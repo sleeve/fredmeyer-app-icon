@@ -26,8 +26,8 @@ fred-meyer-app-icon-29x29_Normal@2x.png -- looks good \
 fred-meyer-app-icon-29x29_Normal@3x.png -- looks good \
 fred-meyer-app-icon-40x40_Normal.png -- looks good \
 fred-meyer-app-icon-40x40_Normal@2x.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-40x40_Normal@3x.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-60x60_Normal@2x.png -- grey outline on right and bottom of icon. \
+fred-meyer-app-icon-40x40_Normal@3x.png -- grey outline on right and bottom of icon. probably incorrectly using this icon within the AppIcon asset catalog as the icon for 60pt 120px @2x iPhone app icon since the correct 60px@2x icon is the incorrect size. \
+fred-meyer-app-icon-60x60_Normal@2x.png -- grey outline on right and bottom of icon. 180px instead of 120px displays an error when added to asset catalog. probably using 40pt@3x icon incorrectly instead to skate around the error/warning. \
 fred-meyer-app-icon-60x60_Normal@3x.png -- grey outline on right and bottom of icon. \
 fred-meyer-app-icon-76x76_Normal.png -- looks good \
 fred-meyer-app-icon-76x76_Normal@2x.png -- looks good \
