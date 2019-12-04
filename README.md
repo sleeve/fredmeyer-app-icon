@@ -4,7 +4,7 @@ After recently interviewing at Kroger Digital for a Quality Engineer role I had 
 
 I've also wanted to secretly become a designer over the years, so exercises like these help me understand more about the craft. I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
 
-learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, xcode simulator, pngcrush, kaleidoscope, asset catalog tinkerer, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro
+learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, xcode simulator, pngcrush, kaleidoscope, asset catalog tinkerer, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng
 
 usually not best practice to have a logo extend to the edge of the app icon image. can't find it in the current ios app logo guidelines though, used to be in there though. usually better to a little room around the edges for the logo to breathe. I get what the kroger designers where thinking though with the new recent bold brand refresh. the new kroger logo is amazing, really love how its simple looking but still has a lot of character. The app icon with the new 'K' is also super solid. its simple, friendly yet interesting and bold at the same time -- super cool. the other banner stores/logos/icons didn't get the same attention though, which is totally understandable when you have 20 other brands to upgrade. 
 
@@ -98,3 +98,8 @@ After the main investigation we have enough data to create a fresh new app icon 
 
 Seeing some bugs or potential issues with how xcode is bundling icons? why does it create AppIcon76x76@2x~ipad.png in the .app bundle when I only have icon assets within my asset bundle? what are packed assets when looking at the assets.car file within asset catalog tinkerer? why is fred_meyer-ios_icon-srgb-180px-60pt_Normal@2x.png and fred_meyer-ios_icon-srgb-180px-60pt_Normal@3x.png the same after extracting from asset catalog tinkerer? could that be from the packed asset? is it just a bug with asset catalog tinkerer? why do files get the _Normal suffix added to them after using asset catalog tinkerer? why do the extracted images have more metadata included with them compared to when I added them to the project? Don't have time to dig into this anymore... I just know that the png image assets that you include within an xcode project will not necessarily match what you can extract from the Assets.car file with third party tools. Not sure if its the way Xcode compiles them or if it is the third party tools.
 
+optipng is amazing and even better than pngcrush. `optipng -v -o7 -strip all -keep image.png`
+the file size savings is great on the larger 1024px app store icon but not quite as much on the smaller images. still a slight improvement though over pngcrush as we're able to strip out a bit more of the metadata with optipng.
+
+optipng (5 test files) = 14,627 bytes (29 KB on disk)
+pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
