@@ -10,19 +10,19 @@ I believe that attention to detail is a critical trait that every great QE shoul
 
 Here is the first issue that I noticed with the app icon. 
 
-![the_first_bug](https://github.com/sleeve/fredmeyer-app-icon/screenshots/the_first_bug.gif)
+![the_first_bug](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/the_first_bug.gif)
 
 You should be able to notice the thick grey banding on the bottom of the icon during the backgrounding animation. Why would it be doing that? There are plenty of other similar looking app icons with a logo on top of a white background but none of them seemed to exhibit the same behavior. So there must be something wrong with the app or icon asset. When playing around with the main Kroger app I noticed the same thing happening with their blue app icon. Is this a problem on all 30+ Kroger apps? Not quite but it is a problem on about 50% of them.
 
-![kroger_banding](https://github.com/sleeve/fredmeyer-app-icon/screenshots/kroger_banding.gif)
+![kroger_banding](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/kroger_banding.png)
 
 So how do we investigate this further? We need a way to access the actual icon image assets but without having access to any of the source files. We used to be able to just download an app .ipa bundle file within iTunes but in recent versions of macOS iTunes has been removed. There is a way to install an old version but it doesn't really for what we're trying to do. I used a sort of hacky method with Apple Configurator 2 to download a backup .ipa of the Fred Meyer app from the App Store. This gave me access to the whole Fred Meyer.app container and all the files within it. There are some loose image assets within it but most are locked away in the main compiled Asset Catalog file (Assets.car). There are some handy open source tools which allow you to extract the image assets within the .car file. I used Asset Catalog Tinkerer and extracted everything that I could. I was able to track down all of the raw .png app icon assets this way. I started going through them trying to find the thick grey banding but they all looked pretty normal in Preview.app.
 
-![asset_catalog_example](https://github.com/sleeve/fredmeyer-app-icon/screenshots/asset_catalog_example.gif)
+![asset_catalog_example](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/asset_catalog_example.png)
 
 If we change the Preview.app background canvas to white (#FFFFFF) though we start to see something fishy.
 
-![asset_catalog_example_white](https://github.com/sleeve/fredmeyer-app-icon/screenshots/asset_catalog_example_white.gif)
+![asset_catalog_example_white](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/asset_catalog_example_white.png)
 
 The right and bottom sides of the icon seem to have a darker border. It should theoretically be all white (#FFFFFF).
 
