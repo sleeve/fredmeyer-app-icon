@@ -140,3 +140,5 @@ pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
 learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew
 
 I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
+
+![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
