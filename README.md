@@ -1,12 +1,38 @@
 # Fred Meyer App Icon
 
-After recently interviewing at Kroger Digital for a Quality Engineer role I had some free time over the Thanksgiving holiday for a side project. I had already started to investigate the Fred Meyer iOS app and compiled a list of bugs and improvements to reference in the interview but I wanted to take a deeper dive into one of them.                                                            really loved meeting the team and wanted to 
+After recently interviewing at Kroger Digital (better known as Fred Meyer in the northwestern region of the US) for a Quality Engineer role I had some free time over the Thanksgiving holiday for a side project. I had already started to investigate the Fred Meyer iOS app and compiled a list of bugs and improvements to reference in the interview but I didn't get a chance to go over everything that I uncovered. I really enjoyed meeting the team and wanted to continue my investigation to show just how eager I was to join the team. One thing that was mentioned during the interview was that a previous QE there had handed over a packet of 75 bugs/improvements during their interview. The interviewers seemed pretty impressed by this and it's an amazing total but not that unrealistic for any app from a non-tech company. One of the bugs that I had previously come across was this weird app icon distortion when backgrounding the app. I was curious about why it was happening and I had a hunch that I could fix it with further investigation. Just taking a quick glance at the icon I started to notice some other potential issues with it. I'm a competitive person on occasion and I had this historical target of "75 bugs" floating around in my head. I thought it would be a little hilarious to see how close I could get to 75 bugs/improvements before even launching app. It sounds like a ridiculous target but I got very close and may have actually exceeded that...
 
-I've also wanted to secretly become a designer over the years, so exercises like these help me understand more about the craft. I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
+## Why Waste Your Time On This?
 
-I believe that attention to detail is a critical trait that every great qe should have. Here is an example of the level of detail that I'm capable of showing. it also shows that I am self-motivated and self-directed and can learn things on my own (and eventually share them) without someone guiding me. its ok if you don't really see the need for the project, I totally understand that some people will see it that way and that it may even be the majority of people. I enjoy the little details in projects and believe that there is a right and wrong way to do things. That is pretty much what software is, 1s and 0s, true or false, right and wrong. micro-bugs.
+I believe that attention to detail is a critical trait that every great QE should have. This project hopefully acts as an example of the level of detail that I'm capable of. It's definitely not a high priority issue but I don't work there yet so I have no other tasks assigned to me. I have also wanted to secretly become a designer over the years, so exercises like these help me understand more about the craft and give me more experience with various design tools. I totally understand most people who see the final icon comparisons will see no value and ask "why would you waste your time on this"? That's totally fine and understandable but I'm a person who appreciates these big little details and am passionate about getting them right. That's really the essence of software; 1's and 0's, true or false, right and wrong. In the end, it's just a slightly humorous and educational project for **_me_**.
 
-learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng
+## The First Bug
+
+Here is the first issue that I noticed with the app icon. 
+
+![the_first_bug](https://github.com/sleeve/fredmeyer-app-icon/screenshots/the_first_bug.gif)
+
+You should be able to notice the thick grey banding on the bottom of the icon during the backgrounding animation. Why would it be doing that? There are plenty of other similar looking app icons with a logo on top of a white background but none of them seemed to exhibit the same behavior. So there must be something wrong with the app or icon asset. When playing around with the main Kroger app I noticed the same thing happening with their blue app icon. Is this a problem on all 30+ Kroger apps? Not quite but it is a problem on about 50% of them.
+
+![kroger_banding](https://github.com/sleeve/fredmeyer-app-icon/screenshots/kroger_banding.gif)
+
+So how do we investigate this further? We need a way to access the actual icon image assets but without having access to any of the source files. We used to be able to just download an app .ipa bundle file within iTunes but in recent versions of macOS iTunes has been removed. There is a way to install an old version but it doesn't really for what we're trying to do. I used a sort of hacky method with Apple Configurator 2 to download a backup .ipa of the Fred Meyer app from the App Store. This gave me access to the whole Fred Meyer.app container and all the files within it. There are some loose image assets within it but most are locked away in the main compiled Asset Catalog file (Assets.car). There are some handy open source tools which allow you to extract the image assets within the .car file. I used Asset Catalog Tinkerer and extracted everything that I could. I was able to track down all of the raw .png app icon assets this way. I started going through them trying to find the thick grey banding but they all looked pretty normal in Preview.app.
+
+![asset_catalog_example](https://github.com/sleeve/fredmeyer-app-icon/screenshots/asset_catalog_example.gif)
+
+If we change the Preview.app background canvas to white (#FFFFFF) though we start to see something fishy.
+
+![asset_catalog_example_white](https://github.com/sleeve/fredmeyer-app-icon/screenshots/asset_catalog_example_white.gif)
+
+The right and bottom sides of the icon seem to have a darker border. It should theoretically be all white (#FFFFFF).
+
+--------------------------------------------------------------------------
+
+
+
+
+
+
 
 usually not best practice to have a logo extend to the edge of the app icon image. can't find it in the current ios app logo guidelines though, used to be in there though. usually better to a little room around the edges for the logo to breathe. I get what the kroger designers where thinking though with the new recent bold brand refresh. the new kroger logo is amazing, really love how its simple looking but still has a lot of character. The app icon with the new 'K' is also super solid. its simple, friendly yet interesting and bold at the same time -- super cool. the other banner stores/logos/icons didn't get the same attention though, which is totally understandable when you have 20 other brands to upgrade. 
 
@@ -70,7 +96,8 @@ sRGB: #ed1c24 (237, 28, 36) Display P3: #DA3832 (218, 56, 50) \
 https://www.fredmeyer.com/content/v2/binary/image/fredmeyer_svg_logo-desktop-1556238715657.svg -- looks way better than the current app icon/logo color, way more vibrant. measured in preview and within firefox and had same results. even lists `path fill="#ed1c24"` within .svg. \
 fredmeyer.com favicon -- also measures as this within firefox tabs.
 Fred-Meyer-01.png (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- same color as fm.com svg \
-Fred-Meyer-01.svg (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- same color as fm.com svg
+Fred-Meyer-01.svg (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- same color as fm.com svg \
+Fred_Meyer_Logo (https://upload.wikimedia.org/wikipedia/commons/7/79/Fred_Meyer_logo.svg)
 https://encycolorpedia.com/companies/us/fred-meyer
 https://encycolorpedia.com/ed1c24
 
@@ -105,3 +132,7 @@ the file size savings is great on the larger 1024px app store icon but not quite
 
 optipng (5 test files) = 14,627 bytes (29 KB on disk)
 pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
+
+learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew
+
+I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
