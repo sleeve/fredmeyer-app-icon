@@ -1,18 +1,20 @@
 # Fred Meyer App Icon
 
-After recently interviewing at Kroger Digital (better known as Fred Meyer in the northwestern region of the US) for a Quality Engineer role I had some free time over the Thanksgiving holiday for a side project. I had already started to investigate the Fred Meyer iOS app and compiled a list of bugs and improvements to reference in the interview but I didn't get a chance to go over everything that I uncovered. I really enjoyed meeting the team and wanted to continue my investigation to show just how eager I was to join the team. One thing that was mentioned during the interview was that a previous QE there had handed over a packet of 75 bugs/improvements during their interview. The interviewers seemed pretty impressed by this and it's an amazing total but not that unrealistic for any app from a non-tech company. One of the bugs that I had previously come across was this weird app icon distortion when backgrounding the app. I was curious about why it was happening and I had a hunch that I could fix it with further investigation. Just taking a quick glance at the icon I started to notice some other potential issues with it. I'm a competitive person on occasion and I had this historical target of "75 bugs" floating around in my head. I thought it would be a little hilarious to see how close I could get to 75 bugs/improvements before even launching app. It sounds like a ridiculous target but I got very close and may have actually exceeded that...
+After recently interviewing at Kroger Digital (better known as Fred Meyer in the northwestern region of the US) for a Quality Engineer role I had some free time over the Thanksgiving holiday for a side project. I had already started to investigate the Fred Meyer iOS app and compiled a list of bugs and improvements to reference in the interview but I didn't get a chance to go over everything that I uncovered. I really enjoyed meeting the team and wanted to continue my investigation to show just how eager I was to join the team. One thing that was mentioned during the interview was that a previous QE there had handed over a packet of 75 bugs/improvements during their interview. The interviewers seemed pretty impressed by this and it's an amazing total but not that unrealistic for any app from a non-tech company.
+
+One bug that I had previously come across was this weird app icon distortion issue when backgrounding the app. I was curious about why it was happening and I had a hunch that I could fix it with a little more investigation. Just taking a quick glance at the icon I started to notice some other potential issues with it. I'm a competitive person on occasion and I had this historical number of "75 bugs" floating around in my head and it seemed like a fun target. I thought it would be a little hilarious to see how close I could get to 75 bugs/improvements before even launching app. It sounds like a ridiculous target but I got very close and may have actually exceeded that number...
 
 ## Why Waste Your Time On This?
 
-I believe that attention to detail is a critical trait that every great QE should have. This project hopefully acts as an example of the level of detail that I'm capable of. It's definitely not a high priority issue but I don't work there yet so I have no other tasks assigned to me. I have also wanted to secretly become a designer over the years, so exercises like these help me understand more about the craft and give me more experience with various design tools. I totally understand most people who see the final icon comparisons will see no value and ask "why would you waste your time on this"? That's totally fine and understandable but I'm a person who appreciates these big little details and am passionate about getting them right. That's really the essence of software; 1's and 0's, true or false, right and wrong. In the end, it's just a slightly humorous and educational project for **_me_**.
+I believe that attention to detail is a critical trait that every great QE should have. This project hopefully is a good example of the level of detail that I'm capable of. It's definitely not a high priority issue but I don't work there yet so I have no other tasks assigned to me. I also have secretly wanted to become a designer over the years. Exercises like these help me understand more about the craft and give me more experience with various design tools. I totally understand most people who see the final icon comparisons will see no value and ask "why would you waste your time on this"? That's totally fine and understandable but I'm a person who appreciates these big little details and am passionate about getting them right. That's really the essence of software; 1's and 0's, true or false, right and wrong. In the end though it's just a slightly humorous and educational project for **_me_**.
 
 ## The First Bug
 
-Here is the first issue that I noticed with the app icon. 
+Here is the first issue that I noticed with the app icon.
 
 ![the_first_bug](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/the_first_bug.gif)
 
-You should be able to notice the thick grey banding on the bottom of the icon during the backgrounding animation. Why would it be doing that? There are plenty of other similar looking app icons with a logo on top of a white background but none of them seemed to exhibit the same banding behavior. So there must be something wrong with the app or icon asset. When playing around with the main Kroger app I noticed the same thing happening with their blue app icon. Is this a problem on all 30+ Kroger apps? Not quite but it is a problem on about 50% of them. More on that later.
+You should be able to see the thick grey banding on the bottom of the icon during the backgrounding animation. Why would it be doing that? There are plenty of other similar looking app icons with a logo on top of a white background but none of them seemed to exhibit the same banding behavior. So there must be something wrong with the app or icon asset. When playing around with the main Kroger app I noticed the same thing happening with their blue Kroger app icon. Is this a problem on all 30+ Kroger apps? Not quite but it is a problem on about 50% of them. More on that later.
 
 ![kroger_banding](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/kroger_banding.png)
 
@@ -20,13 +22,23 @@ So how do we investigate this further? We need a way to access the actual icon i
 
 ![asset_catalog_example](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/asset_catalog_example.png)
 
-I then gathered all of the app icon assets and added them to an iOS test app that I created. I was able to reproduce the issue with my test app so now I knew the issue was with the icon assets and had nothing to do with the apps. 
+I then gathered all of the app icon assets and added them to an iOS test app that I created. I was able to reproduce the issue with my test app so now I knew the issue was with the icon assets and had nothing to do with the apps.
 
 ![fred_test](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_test.gif)
 
-If we change the Preview.app canvas to white (#FFFFFF) though we start to see something fishy. The right and bottom sides of the icon seem to have a darker grey border. It should theoretically be all white (#FFFFFF) and match the white canvas color.
+If we change the Preview.app canvas to white (#FFFFFF) we start to see something fishy with the icon. The right and bottom sides of the icon seem to have a darker grey border. It should theoretically be all white (#FFFFFF) and match the white canvas color.
 
 ![asset_catalog_example_white](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/asset_catalog_example_white.png)
+
+Zooming in on it a bit more we can see that there is indeed a 1-pixel grey border on the right and bottom sides of the icons.
+
+![grey_pixel_border](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/grey_pixel_border.png)
+
+So now I knew that this 1-pixel grey line was somehow responsible for the backgrounding animation issue. I was still confused on how but once I slowed down the animation within the iOS simulator I started to see why. During the animation iOS seems to grap the whole bottom row of pixels of an app icon and stretch it down to make it feel a bit more immersive when launching or closing an app. Look at the blue Kroger icon screenshot above and you can see the stretching effect on the right leg of the "K". This feels like more of an iOS bug to me though, it's an animation hack but it works fine on 99% of the icons. Most modern app icons don't have content that touches the edge of the icon. The majority of icons consist of small logos or glyphs centered on a mostly solid color background. You wouldn't really ever notice this animation bug if you didn't accidentally have a row of dark pixels on your mostly white icon. You can even see the behavior on Apple's Maps icon here.
+
+![apple_maps](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/apple_maps.png)
+
+I went over all of the individual sizes for the icon assets and saw that the grey border wasn't on every single size but it was on 75% of them. We could have just gone in with an image editor and changed the grey pixels to white but by this time I had seen enough of the icon to spot a few other things I could improve. Fixing all of them would be pretty impossible to pull of by just using an image editor. I decided that if I wanted it done correctly I would have to basically re-create the icon from scratch.
 
 
 
