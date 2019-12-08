@@ -67,7 +67,7 @@ Another thing that was bothering me was the new icon seemed to use a bit duller 
 
 ![xscope](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/xscope.png)
 
-1. There's actually a [Fred Meyer vector logo](https://www.fredmeyer.com/content/v2/binary/image/fredmeyer_svg_logo-desktop-1556238715657.svg) on the website that has a fill color of #ED1C24.
+1. There's actually a Fred Meyer [vector logo](https://www.fredmeyer.com/content/v2/binary/image/fredmeyer_svg_logo-desktop-1556238715657.svg) on the website that has a fill color of #ED1C24.
 2. The [favicon](https://www.fredmeyer.com/favicon.ico) on the website uses #ED1C24.
 3. The [vector logo](https://upload.wikimedia.org/wikipedia/commons/7/79/Fred_Meyer_logo.svg) on Wikipedia uses #ED1C24.
 4. The [vector logo](https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) on brandeps.com uses #ED1C24.
@@ -75,14 +75,64 @@ Another thing that was bothering me was the new icon seemed to use a bit duller 
 
 This seemed like enough evidence that #ED1C24 was the real red brand color. We'll use this as the red color when re-creating the icons. I could be totally wrong in assuming this is the correct red as the brand colors may have been recently updated. I just think it's a bit more saturated and looks better on screen so we're going with it.
 
-More recent iOS devices have wide color gamut displays so I wanted to learn more about digital color spaces and see if we could create better looking icons using the Display P3 color space. Xcode now supports using two different icon assets with for both sRGB and Display P3 color profiles. I started off by keeping the sRGB color hex code #ED1C24 and just assigning the Display P3 color profile to it. It looked amazing on screen next to the current app icon but it was way more saturated and didn't quite feel right.
+More recent iOS devices have wide color gamut displays so I wanted to learn more about digital color spaces and see if we could create better looking icons using the Display P3 color space. Xcode now supports using two different icon assets with for both sRGB and Display P3 color profiles. I started off by keeping the sRGB color hex code #ED1C24 and just assigning the Display P3 color profile to it. It looked amazing on screen next to the current app icon but it was way too vibrant and saturated. It almost looked like neon red and it just didn't feel quite right.
 
 ![display_p3](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/display_p3.png)
+
+I read a lot of articles and blog posts about working with different color spaces and how to use color profiles correctly. Instead of assigning a Display P3 color profile to the same sRGB color code I should have converted the colors into Display P3. After a lot of trial and error I came to the conclusion that we wouldn't see any real benefit by adding Display P3 versions of the app icons. The red brand color is already within the sRGB color space so by converting it to Display P3 our eyes would still see the same red color. Display P3 color profiles work best on photographs and more complex artwork. You just can't really see any difference on flat app icons that use a minimal color pallet.
+
+## Pixel Fitted
+
+We pretty much have all we need now to start to re-create the icon. We were able to get a copy of the vector logo so we can copy the "F" from it and have it be as sharp as possible in all resolutions. We have the red brand color that we're going to fill the "F" with. That's about all we need to get started but there is one more improvement that I'd like to add to all the icons. It's called [pixel-fitting](https://dcurt.is/pixel-fitting). If we zoom into one of the current app icons we can see the effects of not pixel-fitting. Take a look at the horizontal edges within the "F" path. Notice how they're blurry and have a line of more pink-ish pixels where it transitions from red to white.
+
+![blurry_pixels](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/blurry_pixels.png)
+
+We'll have to manually adjust these horizontal vector points for all 13 icon sizes that we need for Xcode. This is a lot more work to remove most of the fractional pixels but it's going to produce super sharp icons. The smaller icon sizes will see the most benefit. We're technically modifying the actual shape of the "F" but it shouldn't be noticeable if we do correctly.
+
+## Starting Fresh (For Everyone) 😉
+
+I think we have our plan laid out and have everything that we need now to re-create the icons. We're going to be using [Sketch](https://www.sketch.com/) as our vector editor. Here are the steps we're following starting with the largest 1024x1024px size:
+
+1. Create a 1024x1024 square and fill it with white #FFFFFF, this is our icon background.
+2. Copy the "F" vector path from the .svg we found on the website and paste it on top of the white background.
+3. Stretch and fit the "F" path (while maintaining its aspect ratio) to be as tall as the background and centered within it.
+4. Select the "F" path and fill it with the red brand color #ED1C24.
+5. In order to maintain the correct angles in the "F" path we need to draw 6 vector guidelines around the horizontal points that we'll be moving before we start pixel-fitting. These will help us place the vector points correctly and not throw off the geometry of the "F" path.
+
+![guidelines](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/guidelines.png)
+
+6. Now we can zoom way into those vector points along the horizontal axis to see the fractional pixels that we want to turn into full pixels. Drag the horizontal vector point to the closest pixel edge on the y-axis and then center it within the guideline we created on the x-axis. Do this for all 6 horizontal points.
+
+![pixel_fitting](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/pixel_fitting.gif)
+
+7. Hide the guideline layers so only the background and "F" path are visible.
+8. Export the icon at 1x size as a .png with an sRGB color profile and uncheck both "Interlace PNG" and "Save for web".
+
+Most designers would just stop here after creating the 1024px version of the icon and then use it to create scaled down versions of the icon. There's even an official template within Sketch that automates this super quickly. We could use this method as it's a lot faster to create all the sizes of icons but we would miss out on all the pixel-fitting improvements if we automate it. This automation also seems to be the cause of our original grey banding animation bug. The designer created the original 1024px version and kicked off the automation that down-scaled and created all the smaller icons sizes. I'm not sure what tool they used but somewhere during that procedure the grey border started to appear on most of the icon sizes.
+
+Since we're choosing to include pixel-fitting we'll need to repeat these steps for the 12 other required iOS app icon sizes. This was by far the most time consuming step of the whole project. The results turned out great though.
 
 --------------------------------------------------------------------------
 
 
-Wanted to investigate using Display P3 versions of the icon but through a lot of trial and error I'm pretty sure the difference between the versions would be negligible. I was getting confused switching between both sRGB and Display P3 color spaces/profiles. I was keeping the same 8-bit red color hex code (#ED1C24) for both the sRGB and Display P3 image export but just assigning them their respective color profiles. This was producing a correct sRGB image but by just assigning the Display P3 color profile to the Display P3 image it was making the red color way more saturated and vibrant than it really should be. At first I thought this is just what Display P3 images should look like as they're supposed to be able to display more colors that we're not used to seeing in the sRGB world. The problem is that the red sRGB color value is already within the Display P3 gamut so we shouldn't really be seeing any new crazy vibrant wider colors.
+
+Checking the exported image it has an alpha channel included within it which we don't need. pngcrush seems to remove this one with -brute. maybe be a good idea to find specific imagemagick command to remove all unneeded png chunks. what is a needed chunk though?
+
+
+Seeing some bugs or potential issues with how xcode is bundling icons? why does it create AppIcon76x76@2x~ipad.png in the .app bundle when I only have icon assets within my asset bundle? what are packed assets when looking at the assets.car file within asset catalog tinkerer? why is fred_meyer-ios_icon-srgb-180px-60pt_Normal@2x.png and fred_meyer-ios_icon-srgb-180px-60pt_Normal@3x.png the same after extracting from asset catalog tinkerer? could that be from the packed asset? is it just a bug with asset catalog tinkerer? why do files get the "_Normal" suffix added to them after using asset catalog tinkerer? why do the extracted images have more metadata included with them compared to when I added them to the project? Don't have time to dig into this anymore... I just know that the png image assets that you include within an xcode project will not necessarily match what you can extract from the Assets.car file with third party tools. Not sure if its the way Xcode compiles them or if it is the third party tools.
+
+optipng is amazing and even better than pngcrush. `optipng -v -o7 -strip all -keep image.png`
+the file size savings is great on the larger 1024px app store icon but not quite as much on the smaller images. still a slight improvement though over pngcrush as we're able to strip out a bit more of the metadata with optipng.
+
+optipng (5 test files) = 14,627 bytes (29 KB on disk)
+pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
+
+learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew,
+
+I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
+
+![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
+
 
 **App Logo/Icon colors:**
 
@@ -143,35 +193,3 @@ Fred-Meyer-01.eps (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -
 
 #eb1c25 \
 Fred-Meyer-01.jpg (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- looks closer to fm.com svg colors.
-
-
-
-
-
-
-# Starting Fresh (For Everyone) 😉
-After the main investigation we have enough data to create a fresh new app icon set with all the fixes applied along with some bonus fixes.
-
-1. creating a new sketch document with a 1024x1024px white square background layer.
-2. open the svg we got from fm.com also within sketch, copy the "F" vector path within it and paste it in our new document over the white background
-3. select the "F" path and make sure its in front of the background layer and then update the fill color to #ed1c24 that was the color used in the original svg.
-4. stretch the "F" path to take up the full height of the 1024px background, be sure to hold shift while stretching it to maintain aspect ratio. sketch should help us out a bit by snapping to the top and bottom edges when we're close.
-5. Once the "F" path is tall enough at 1024px we need to make sure its also centered within the background, drag the "F" path around a bit and sketch should display some centering guidelines and snap to them when we're close to them.
-6. So that should be enough work to be able to now export a .png from it but lets make one more minor improvement that has to do with pixel hinting. https://dcurt.is/pixel-fitting I find it best to only use pixel hinting on the straight right angle parts of logos like these and to mostly leave the more round or angular sides of shapes/characters untouched. Moving to many vector points around will change the way the logo looks so its best to keep it to a minimum and not go too crazy trying to get every single line to fit perfectly within all pixels. you can only do so much with pixel hinting. we really only needed to fix two edges/lines of the "F" path in the 1024px version.
-7. We can now export the sketch document as a .png, 8-bit color, sRGB color profile
-8. Checking the exported image it has an alpha channel included within it which we don't need. pngcrush seems to remove this one with -brute. maybe be a good idea to find specific imagemagick command to remove all unneeded png chunks. what is a needed chunk though?
-
-
-Seeing some bugs or potential issues with how xcode is bundling icons? why does it create AppIcon76x76@2x~ipad.png in the .app bundle when I only have icon assets within my asset bundle? what are packed assets when looking at the assets.car file within asset catalog tinkerer? why is fred_meyer-ios_icon-srgb-180px-60pt_Normal@2x.png and fred_meyer-ios_icon-srgb-180px-60pt_Normal@3x.png the same after extracting from asset catalog tinkerer? could that be from the packed asset? is it just a bug with asset catalog tinkerer? why do files get the "_Normal" suffix added to them after using asset catalog tinkerer? why do the extracted images have more metadata included with them compared to when I added them to the project? Don't have time to dig into this anymore... I just know that the png image assets that you include within an xcode project will not necessarily match what you can extract from the Assets.car file with third party tools. Not sure if its the way Xcode compiles them or if it is the third party tools.
-
-optipng is amazing and even better than pngcrush. `optipng -v -o7 -strip all -keep image.png`
-the file size savings is great on the larger 1024px app store icon but not quite as much on the smaller images. still a slight improvement though over pngcrush as we're able to strip out a bit more of the metadata with optipng.
-
-optipng (5 test files) = 14,627 bytes (29 KB on disk)
-pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
-
-learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew,
-
-I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
-
-![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
