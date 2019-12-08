@@ -55,17 +55,31 @@ Luckily the Fred Meyer logo is much more modern looking than the other banner lo
 ![fred_meyer_pre_refresh](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_meyer_pre_refresh.png)
 ![fred_meyer_icon](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_meyer_icon.png)
 
-The new icon is fine and definitely bigger and bolder but I thought the previous version was already pretty good. My initial impression of a giant red "F" didn't make me feel super comfortable and inspire me with confidence. It reminded me more of receiving a failing grade on a school project. Not a great thing to see.
+The new icon is fine and definitely bigger and bolder but I thought the previous version was already pretty good (except the registered trademark symbol). My initial impression of a giant red "F" didn't make me feel super comfortable and inspire me with confidence. It reminded me more of receiving a failing grade on a school project. You hate to see it.
 
 ![failing_grade](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/failing_grade.jpg)
 
-It's fine though and it'll be a little easier to create from scratch so we're keeping the current version mostly intact. One improvement that I'm adding is to not clip off any part of the red "F" by extending it beyond the icons edges. In the current version the bottom and the top are just slightly clipped. It's usually not the best practice to have a logo touch the edges of the icon. It's better to leave a little space around the edges for the logo to breathe.
+It's mostly fine though and it's easier to re-create from scratch so we're keeping the current icon design as our baseline. One improvement that I'm adding is to not clip off any part of the red "F" by extending it beyond the icons edges. In the current version the bottom and the top are just slightly clipped. It's usually not the best practice to have a logo touch the edges of the icon. It helps to leave a little space around the edges for the logo to breathe. This technique works for the new Kroger blue icon, just not so much on all the other banner store wordmarks though.
+
+## What Color Is This?
+
+Another thing that was bothering me was the new icon seemed to use a bit duller and de-saturated red color. I wanted to find out what the actual Fred Meyer red brand color was but I couldn't find any official brand guidelines. In order to narrow in on an official red brand color I decided to run color tests with [xScope](https://xscopeapp.com/) on all the Fred Meyer app icons and various logos within the app and around the web. The new app icons consistently use hex code color #D9272E but I was able to find multiple references around the web that pointed to #ED1C24 being the actual brand color.
+
+![xscope](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/xscope.png)
+
+1. There's actually a [Fred Meyer vector logo](https://www.fredmeyer.com/content/v2/binary/image/fredmeyer_svg_logo-desktop-1556238715657.svg) on the website that has a fill color of #ED1C24.
+2. The [favicon](https://www.fredmeyer.com/favicon.ico) on the website uses #ED1C24.
+3. The [vector logo](https://upload.wikimedia.org/wikipedia/commons/7/79/Fred_Meyer_logo.svg) on Wikipedia uses #ED1C24.
+4. The [vector logo](https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) on brandeps.com uses #ED1C24.
+5. There's a Fred Meyer company page on [encycolorpedia.com](https://encycolorpedia.com/companies/us/fred-meyer) that references #ED1C24 as the brand color.
+
+This seemed like enough evidence that #ED1C24 was the real red brand color. We'll use this as the red color when re-creating the icons. I could be totally wrong in assuming this is the correct red as the brand colors may have been recently updated. I just think it's a bit more saturated and looks better on screen so we're going with it.
+
+More recent iOS devices have wide color gamut displays so I wanted to learn more about digital color spaces and see if we could create better looking icons using the Display P3 color space. Xcode now supports using two different icon assets with for both sRGB and Display P3 color profiles. I started off by keeping the sRGB color hex code #ED1C24 and just assigning the Display P3 color profile to it. It looked amazing on screen next to the current app icon but it was way more saturated and didn't quite feel right.
+
+![display_p3](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/display_p3.png)
 
 --------------------------------------------------------------------------
-
-
-one big assumption that I'm making is that I'm pretty sure the current red color used in the logo is wrong and doesn't match the brand guidelines. I could be wrong on this but I can't find any overwhelming evidence that disproves my theory. I'm mostly relying on how the logo is displayed on the fred meyer website and also from the svg on fredmeyer.com which has the exact rgb hex code within it. The brand colors may have been recently refreshed but if so, they decided to go with a less vibrant color and land on a de-saturated duller red.
-
 
 
 Wanted to investigate using Display P3 versions of the icon but through a lot of trial and error I'm pretty sure the difference between the versions would be negligible. I was getting confused switching between both sRGB and Display P3 color spaces/profiles. I was keeping the same 8-bit red color hex code (#ED1C24) for both the sRGB and Display P3 image export but just assigning them their respective color profiles. This was producing a correct sRGB image but by just assigning the Display P3 color profile to the Display P3 image it was making the red color way more saturated and vibrant than it really should be. At first I thought this is just what Display P3 images should look like as they're supposed to be able to display more colors that we're not used to seeing in the sRGB world. The problem is that the red sRGB color value is already within the Display P3 gamut so we shouldn't really be seeing any new crazy vibrant wider colors.
@@ -135,7 +149,7 @@ Fred-Meyer-01.jpg (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -
 
 
 
-# Starting Fresh (for everyone 😉)
+# Starting Fresh (For Everyone) 😉
 After the main investigation we have enough data to create a fresh new app icon set with all the fixes applied along with some bonus fixes.
 
 1. creating a new sketch document with a 1024x1024px white square background layer.
@@ -156,7 +170,7 @@ the file size savings is great on the larger 1024px app store icon but not quite
 optipng (5 test files) = 14,627 bytes (29 KB on disk)
 pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
 
-learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew
+learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew,
 
 I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
 
