@@ -57,7 +57,7 @@ Luckily the Fred Meyer logo is much more modern looking than the other banner lo
 
 The new icon is fine and definitely bigger and bolder but I thought the previous version was already pretty good. My initial impression of a giant red "F" didn't make me feel super comfortable and inspire me with confidence. It reminded me more of receiving a failing grade on a school project. Not a great thing to see.
 
-![failing_grade](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/failing_grade.png)
+![failing_grade](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/failing_grade.jpg)
 
 It's fine though and it'll be a little easier to create from scratch so we're keeping the current version mostly intact. One improvement that I'm adding is to not clip off any part of the red "F" by extending it beyond the icons edges. In the current version the bottom and the top are just slightly clipped. It's usually not the best practice to have a logo touch the edges of the icon. It's better to leave a little space around the edges for the logo to breathe.
 
