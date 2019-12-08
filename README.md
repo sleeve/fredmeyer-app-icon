@@ -42,33 +42,27 @@ I went over all of the individual sizes for the icon assets and saw that the gre
 
 ## Tweaking The Brand Refresh
 
-Before we dive in and start making the new icon lets go over some of the other fixes that I want to include in it. Kroger recently did a [brand refresh](https://www.thekrogerco.com/about-kroger/our-brand/) which included a new updated Kroger logo and marketing campaign. I really like the look of the new logo and the way they applied it to the main Kroger app icon. Aside from the animation banding issue mentioned earlier I think it's an amazing icon. It's simple but also bold. It uses just the first letter of the logo and it's positioned off center on the bottom-left to showcase the more expressive loop in the upper-right. Some of the edges of the character are slightly clipped off but it's very minor.
+Before we dive in and start making the new icon lets go over some of the other fixes that I want to include in it. Kroger recently did a [brand refresh](https://www.thekrogerco.com/about-kroger/our-brand/) which included a new updated Kroger logo and marketing campaign. I really like the look of the new logo and the way they applied it to the main Kroger app icon. Aside from the animation banding issue mentioned earlier I think it's an amazing icon. It's simple but bold and has some character to it. It uses just the first letter of the logo and it's positioned off center on the bottom-left to showcase the more expressive loop in the upper-right. Some of the edges of the character are slightly clipped off but it's very minor.
 
 ![kroger_icon](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/kroger_icon.png)
 
-I was a little surprised to see some branding experts [mostly-negative opinions](https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_kroger_by_ddb.php) on the brand refresh but I think the implementation into the icon is perfect. The other 15 or so banner stores (Fred Meyer, Ralphs, Fry's, etc.) didn't quite get the same attention for the refresh. None of the banner logos were updated but they still decided to bring over the app icon refresh for all their various apps. I don't quite agree with this choice but I can understand the idea behind it. A lot of the other logos use very odd outdated wordmarks so just showing giant versions of the first character for all those apps feels very lazy.
+I was a little surprised to see some branding experts [mostly-negative opinions](https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_kroger_by_ddb.php) on the brand refresh but I think the implementation into the icon is perfect. The other 15 or so banner stores (Fred Meyer, Ralphs, Fry's, etc.) didn't quite get the same amount of love and attention for the refresh. None of the banner store logos were updated but they still decided to bring over the app icon refresh for all their various apps. I don't quite agree with this choice but I can understand the idea behind it. A lot of the other logos use very odd outdated wordmarks so just showing giant slightly-clipped versions of the first character for all those apps feels very lazy. My sympathies to the designers though, I can totally imagine the time pressure they must have been under to crank out 15+ new perfect bold app icons at once. Not easy an easy job.
 
 ![banner_icons](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/banner_icons.png)
 
-Luckily the Fred Meyer logo is much more modern looking than the other banner logos. Here's what it used to look like before the brand refresh and how it looks like now.
+Luckily the Fred Meyer logo is much more modern looking than the other banner logos. Here's what the app icon used to look like before the brand refresh and how it looks like in the current version.
 
 ![fred_meyer_pre_refresh](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_meyer_pre_refresh.png)
 ![fred_meyer_icon](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_meyer_icon.png)
 
+The new icon is fine and definitely bigger and bolder but I thought the previous version was already pretty good. My initial impression of a giant red "F" didn't make me feel super comfortable and inspire me with confidence. It reminded me more of receiving a failing grade on a school project. Not a great thing to see.
 
+![failing_grade](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/failing_grade.png)
 
+It's fine though and it'll be a little easier to create from scratch so we're keeping the current version mostly intact. One improvement that I'm adding is to not clip off any part of the red "F" by extending it beyond the icons edges. In the current version the bottom and the top are just slightly clipped. It's usually not the best practice to have a logo touch the edges of the icon. It's better to leave a little space around the edges for the logo to breathe.
 
 --------------------------------------------------------------------------
 
-
-
-
-
-
-
-usually not best practice to have a logo extend to the edge of the app icon image. can't find it in the current ios app logo guidelines though, used to be in there though. usually better to a little room around the edges for the logo to breathe. I get what the kroger designers where thinking though with the new recent bold brand refresh. the new kroger logo is amazing, really love how its simple looking but still has a lot of character. The app icon with the new 'K' is also super solid. its simple, friendly yet interesting and bold at the same time -- super cool. the other banner stores/logos/icons didn't get the same attention though, which is totally understandable when you have 20 other brands to upgrade. 
-
-one thing that they did seem to bring over is the app icon design theme of using only the first letter/character of the banner store name/logo and stretching it slightly beyond the bounds of the app icon edges creating an purposeful artistic clipping effect to the character. this works amazing for the kroger icon but not so much for all the others. for all the other banner stores is looks more like a bug than an artistic choice. an example is on the top of kroger icon, the top part of the "K" character isn't clipped, you see the top most part of the fancy K 
 
 one big assumption that I'm making is that I'm pretty sure the current red color used in the logo is wrong and doesn't match the brand guidelines. I could be wrong on this but I can't find any overwhelming evidence that disproves my theory. I'm mostly relying on how the logo is displayed on the fred meyer website and also from the svg on fredmeyer.com which has the exact rgb hex code within it. The brand colors may have been recently refreshed but if so, they decided to go with a less vibrant color and land on a de-saturated duller red.
 
