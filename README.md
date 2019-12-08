@@ -1,20 +1,20 @@
 # Fred Meyer App Icon
 
-After recently interviewing at Kroger Digital (better known as Fred Meyer in the northwestern region of the US) for a Quality Engineer role I had some free time over the Thanksgiving holiday for a side project. I had already started to investigate the Fred Meyer iOS app and compiled a list of bugs and improvements to reference in the interview but I didn't get a chance to go over everything that I uncovered. I really enjoyed meeting the team and wanted to continue my investigation to show just how eager I was to join the team. One thing that was mentioned during the interview was that a previous QE there had handed over a packet of 75 bugs/improvements during their interview. The interviewers seemed pretty impressed by this and it's an amazing total but not that unrealistic for any app from a non-tech company.
+After recently interviewing at Kroger Digital (known as Fred Meyer in the northwestern region of the US) for a Quality Engineer role I had some free time over the Thanksgiving holiday for a side project. I had already started to investigate the Fred Meyer iOS app and compiled a list of bugs and improvements to reference in the interview but I didn't get a chance to go over everything that I uncovered. I really enjoyed meeting the team and wanted to continue my investigation to show just how eager I was to join the team. One thing that was mentioned during the interview was that a previous QE there had handed over a packet of 75 bugs/improvements during their interview. The interviewers seemed pretty impressed by this and it's an amazing total but not that unrealistic for any app from a non-tech first company.
 
 One bug that I had previously come across was this weird app icon distortion issue when backgrounding the app. I was curious about why it was happening and I had a hunch that I could fix it with a little more investigation. Just taking a quick glance at the icon I started to notice some other potential issues with it. I'm a competitive person on occasion and I had this historical number of "75 bugs" floating around in my head and it seemed like a fun target. I thought it would be a little hilarious to see how close I could get to 75 bugs/improvements before even launching app. It sounds like a ridiculous target but I got very close and may have actually exceeded that number...
 
 ## Why Waste Your Time On This?
 
-I believe that attention to detail is a critical trait that every great QE should have. This project hopefully is a good example of the level of detail that I'm capable of. It's definitely not a high priority issue but I don't work there yet so I have no other tasks assigned to me. I also have secretly wanted to become a designer over the years. Exercises like these help me understand more about the craft and give me more experience with various design tools. I totally understand most people who see the final icon comparisons will see no value and ask "why would you waste your time on this"? That's totally fine and understandable but I'm a person who appreciates these big little details and am passionate about getting them right. That's really the essence of software; 1's and 0's, true or false, right and wrong. In the end though it's just a slightly humorous and educational project for **_me_**.
+I believe that attention to detail is a critical trait that every great QE should have. This project hopefully an example of the level of detail that I'm capable of. This is definitely not a high priority issue but I don't work there yet so I have no other tasks assigned to me. I also have secretly wanted to become a designer over the years. Exercises like these help me understand more about the craft and give me more experience with various design tools. I totally understand that most people who see the final icon comparisons will see no value and ask "why would you waste your time on this"? That's totally fine and understandable but I'm a person who appreciates these big little details and am passionate about getting them right. That's really the essence of software; 1's and 0's, true or false, right and wrong. In the end though it's just a slightly humorous and educational project for **_me_**.
 
 ## The First Bug
 
-Here is the first issue that I noticed with the app icon.
+Here is the first issue that I noticed with the app icon. You should be able to see the thick grey banding on the bottom of the icon during the backgrounding animation.
 
 ![the_first_bug](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/the_first_bug.gif)
 
-You should be able to see the thick grey banding on the bottom of the icon during the backgrounding animation. Why would it be doing that? There are plenty of other similar looking app icons with a logo on top of a white background but none of them seemed to exhibit the same banding behavior. So there must be something wrong with the app or icon asset. When playing around with the main Kroger app I noticed the same thing happening with their blue Kroger app icon. Is this a problem on all 30+ Kroger apps? Not quite but it is a problem on about 50% of them. More on that later.
+Why would it be doing that? There are plenty of other similar looking app icons with a logo on top of a white background but none of them seemed to exhibit the same banding behavior. So there must be something wrong with the app or icon asset. When playing around with the main Kroger app I noticed the same thing happening with their blue Kroger app icon. Is this a problem on all 30+ Kroger apps? Not quite, but it is a problem on about 50% of them. More on that later.
 
 ![kroger_banding](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/kroger_banding.png)
 
@@ -83,7 +83,7 @@ I read a lot of articles and blog posts about working with different color space
 
 ## Pixel Fitted
 
-We pretty much have all we need now to start to re-create the icon. We were able to get a copy of the vector logo so we can copy the "F" from it and have it be as sharp as possible in all resolutions. We have the red brand color that we're going to fill the "F" with. That's about all we need to get started but there is one more improvement that I'd like to add to all the icons. It's called [pixel-fitting](https://dcurt.is/pixel-fitting) (shout out to Dustin Curtis for the amazing blog post!). If we zoom into one of the current app icons we can see the effects of not pixel-fitting. Take a look at the horizontal edges within the "F" path. Notice how they're blurry and have a line of more pink-ish pixels where it transitions from red to white.
+We pretty much have all we need now to start to re-create the icon. We were able to get a copy of the vector logo so we can copy the "F" from it and have it be as sharp as possible in all resolutions. We have the red brand color that we're going to fill the "F" with. That's about all we need to get started but there is one more improvement that I'd like to add to all the icons. It's called [pixel-fitting](https://dcurt.is/pixel-fitting) (shout out to Dustin Curtis for the amazing blog post)! If we zoom into one of the current app icons we can see the effects of not pixel-fitting. Take a look at the horizontal edges within the "F" path. Notice how they're blurry and have a line of more pink-ish pixels where it transitions from red to white.
 
 ![blurry_pixels](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/blurry_pixels.png)
 
@@ -91,7 +91,7 @@ We'll have to manually adjust these horizontal vector points for all 13 icon siz
 
 ## Starting Fresh (For Everyone) 😉
 
-I think we have our plan laid out and have everything that we need now to re-create the icons. We're going to be using [Sketch](https://www.sketch.com/) as our vector editor. Here are the steps we're following starting with the largest 1024x1024px size:
+I think we have our plan and have everything that we need now to re-create the icons. We're going to be using [Sketch](https://www.sketch.com/) as our vector editor. Here are the steps we're following starting with the largest 1024x1024px size:
 
 1. Create a 1024x1024 square and fill it with white #FFFFFF, this is our icon background.
 2. Copy the "F" vector path from the .svg we found on the website and paste it on top of the white background.
@@ -110,86 +110,63 @@ I think we have our plan laid out and have everything that we need now to re-cre
 
 Most designers would just stop here after creating the 1024px version of the icon and then use it to create scaled down versions of the icon. There's even an official template within Sketch that automates this super quickly. We could use this method as it's a lot faster to create all the sizes of icons but we would miss out on all the pixel-fitting improvements if we automate it. This automation also seems to be the cause of our original grey banding animation bug. The designer created the original 1024px version and kicked off the automation that down-scaled and created all the smaller icons sizes. I'm not sure what tool they used but somewhere during that procedure the grey border started to appear on most of the icon sizes.
 
-Since we're choosing to include pixel-fitting we'll need to repeat these steps for the 12 other required iOS app icon sizes. This was by far the most time consuming step of the whole project. The results turned out great though.
+Since we're choosing to include pixel-fitting we'll need to repeat these steps for the 12 other required iOS app icon sizes. This was by far the most time consuming step of the whole project. The results turned out great though. No more grey banding during the animation, displaying the full "F", using the correct red color and no more blurry edges!
+
+![fred_fixed](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_fixed.gif)
+
+## One More Fix
+
+Before we add all of our 13 new fixed icon images to Xcode, there's still one more improvement that we can make. We can compress the individual .pngs even more by running them through a PNG optimizer. This is still a lossless compression/optimization that won't affect the visual clarity of the images but it will reduce their size before we add them to our Xcode project/bundle. I started using [Pngcrush](https://pmt.sourceforge.io/pngcrush/) which produced solid results but then I discovered [OptiPNG](http://optipng.sourceforge.net/) and it was able to reduce the size even more. Here are the sizes of the original icon images compared to our fixed and size-optimized versions:
+
+Original (13) icons total size: **48,254 bytes** \
+Fixed (13) icons total size: **19,977 bytes**
+
+**That's a 58.6% reduction in size!** The original icons weren't that massive to begin with but every little savings adds up. Imagine if we did this with every .png asset that's include in the app bundle. We could save people way more bandwidth by optimizing all the images. This would speed up so many things and reduce the memory footprint of the app.
+
+## Outro
+
+I had a super fun time on this project learning new concepts and tools. I learned way more about digital color spaces, color theory and wide gamut color. 
+
+
+
+Here are all the different tools that I used during the project.
+* Sketch
+* imagemagick
+* identify
+* pixelmator
+* pixelmator pro
+* preview
+* colorsync utility
+* xscope
+* xcode
+* ios simulator
+* pngcrush
+* kaleidoscope
+* asset catalog tinkerer
+* acextract
+* apple configurator 2
+* iterm2
+* visual studio code
+* tower
+* firefox
+* git
+* github
+* markdown
+* optipng
+* licecap
+* quicktime player
+* homebrew
+
+Thank you so much for reading! Please feel free to let me know if you have any suggestions or feedback. I would love to hear it!
+
 
 --------------------------------------------------------------------------
+so what is the total number of bugs/improvements? x15 for all of the other kroger banner store apps that have similar issues? its debateable what is a single bug or improvement as theres multiple steps involved in some of them.
 
+new refreshed app icon concept inspired by the favicon. most banner stores just have one word names (Ralphs, frys, smiths) but Fred Meyer is a rarer one with two words. the recent app icon refresh works fine for most of those one word stores but not so much for Fred Meyer. It's sometimes referred to locally as "Freddy's" since that used to be there tag line in advertisements.
+https://www.youtube.com/watch?v=iX14q43Gyyo
+https://www.youtube.com/watch?v=WYzCCCnUyUA
 
-
-Checking the exported image it has an alpha channel included within it which we don't need. pngcrush seems to remove this one with -brute. maybe be a good idea to find specific imagemagick command to remove all unneeded png chunks. what is a needed chunk though?
-
-
-Seeing some bugs or potential issues with how xcode is bundling icons? why does it create AppIcon76x76@2x~ipad.png in the .app bundle when I only have icon assets within my asset bundle? what are packed assets when looking at the assets.car file within asset catalog tinkerer? why is fred_meyer-ios_icon-srgb-180px-60pt_Normal@2x.png and fred_meyer-ios_icon-srgb-180px-60pt_Normal@3x.png the same after extracting from asset catalog tinkerer? could that be from the packed asset? is it just a bug with asset catalog tinkerer? why do files get the "_Normal" suffix added to them after using asset catalog tinkerer? why do the extracted images have more metadata included with them compared to when I added them to the project? Don't have time to dig into this anymore... I just know that the png image assets that you include within an xcode project will not necessarily match what you can extract from the Assets.car file with third party tools. Not sure if its the way Xcode compiles them or if it is the third party tools.
-
-optipng is amazing and even better than pngcrush. `optipng -v -o7 -strip all -keep image.png`
-the file size savings is great on the larger 1024px app store icon but not quite as much on the smaller images. still a slight improvement though over pngcrush as we're able to strip out a bit more of the metadata with optipng.
-
-optipng (5 test files) = 14,627 bytes (29 KB on disk)
-pngcrush (5 test files) = 21,082 bytes (33 KB on disk)
-
-learning and trying understand more about color spaces, color profiles, wide-gamut, rgb, srgb, display p3 and hex codes. sketch, imagemagick, identify, pixelmator, preview, colorsync utility, xscope, xcode, ios simulator, pngcrush, kaleidoscope, asset catalog tinkerer, acextract, apple configurator 2, iterm2, visual studio code, tower, firefox, git, github, markdown, pixelmator pro, optipng, licecap, quicktime player, homebrew,
-
-I think the outcome of this project does a lot of things correctly but I'm sure I overlooked or mis-interpreted something along the line. Would love to hear feedback from anyone if they notice anything out of the ordinary with my work.
+I feel like a better qe, a better designer and a better writer than when I started this project.
 
 ![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
-
-
-**App Logo/Icon colors:**
-
-#d7282e \
-ipa-iTunesArtwork.png - looks like theres some artifacting on the edges within the red, possibly saved as a jpeg at one point? white color measures as #feffff in pixelmator and sketch but not preview? extra metadata (exif/jfif?) included within it?
-
-#d9272e \
-app-AppIconFredMeyer76x76@2x~ipad.png -- looks pretty good, no grey outline \
-app-AppIconFredMeyer60x60@2x.png -- grey single-pixel outline on right and bottom \
-fred_meyer_ffe_logo_Normal.png -- remove the registered trademark and trademark symbols \
-fred_meyer_ffe_logo_Normal@2x.png -- remove the registered trademark and trademark symbols \
-fred_meyer_ffe_logo_Normal@3x.png -- remove the registered trademark and trademark symbols \
-FredMeyerStores_Logo_RGB_Normal.png -- giant image could be smaller, remove the registered trademark symbol \
-FredMeyerStores_Logo_RGB_Normal@2x.png -- giant image could be smaller, remove the registered trademark symbol \
-FredMeyerStores_Logo_RGB_Normal@3x.png -- giant image could be smaller, remove the registered trademark symbol \
-iOS-app-store-icon-1024x1024_Normal.png -- looks good, better than the actual iTunesArtwork.png in the .ipa \
-ZZZZPackedAsset-1.1_Normal.png -- not quite sure what the packed asset is, maybe a pdf with multiple icon sizes? black outline around the whole collection, not sure if its a side effect of trying to extract the assets. most of the icons in this are good but the smallest one has a grey outline on the right and bottom. \
-ZZZZPackedAsset-2.1_Normal@2x.png -- grey outline on right and bottom of the largest icon. \
-ZZZZPackedAsset-3.1_Normal@3x.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-20x20_Normal.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-20x20_Normal@2x.png -- looks good \
-fred-meyer-app-icon-20x20_Normal@3x.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-29x29_Normal.png -- looks good \
-fred-meyer-app-icon-29x29_Normal@2x.png -- looks good \
-fred-meyer-app-icon-29x29_Normal@3x.png -- looks good \
-fred-meyer-app-icon-40x40_Normal.png -- looks good \
-fred-meyer-app-icon-40x40_Normal@2x.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-40x40_Normal@3x.png -- grey outline on right and bottom of icon. probably incorrectly using this icon within the AppIcon asset catalog as the icon for 60pt 120px @2x iPhone app icon since the correct 60px@2x icon is the incorrect size. \
-fred-meyer-app-icon-60x60_Normal@2x.png -- grey outline on right and bottom of icon. 180px instead of 120px displays an error when added to asset catalog. probably using 40pt@3x icon incorrectly instead to skate around the error/warning. \
-fred-meyer-app-icon-60x60_Normal@3x.png -- grey outline on right and bottom of icon. \
-fred-meyer-app-icon-76x76_Normal.png -- looks good \
-fred-meyer-app-icon-76x76_Normal@2x.png -- looks good \
-fred-meyer-app-icon-83.5x83.5_Normal@2x.png -- grey outline on right and bottom of icon.
-
-#fffffe -- these probably were meant to be completely white, they all just slightly off though. I'd also remove the super-small unrecognizable registered trademark symbol. we shouldn't need to include it in any logo. fred meyer and kroger are established brands and logos no need to clutter up the legibility of the logo with it. \
-80x80_White_FredMeyer_Normal.png \
-80x80_White_FredMeyer_Normal@2x.png \
-80x80_White_FredMeyer_Normal@3x.png
-
-#ffffff -- color looks good on these, but I would also remove the registered trademark and trademark symbols, just makes it harder to visually scan and read. Also they are kind of large, not sure where they're being displayed but depending on that it might be possible to reduce the size of them. \
-fred_meyer_ffe_logo_lockup_KO_Normal.png \
-fred_meyer_ffe_logo_lockup_KO_Normal@2x.png \
-fred_meyer_ffe_logo_lockup_KO_Normal@3x.png
-
-**Vector Logo colors**
-
-sRGB: #ed1c24 (237, 28, 36) Display P3: #DA3832 (218, 56, 50) \
-https://www.fredmeyer.com/content/v2/binary/image/fredmeyer_svg_logo-desktop-1556238715657.svg -- looks way better than the current app icon/logo color, way more vibrant. measured in preview and within firefox and had same results. even lists `path fill="#ed1c24"` within .svg. \
-fredmeyer.com favicon -- also measures as this within firefox tabs.
-Fred-Meyer-01.png (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- same color as fm.com svg \
-Fred-Meyer-01.svg (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- same color as fm.com svg \
-Fred_Meyer_Logo (https://upload.wikimedia.org/wikipedia/commons/7/79/Fred_Meyer_logo.svg)
-https://encycolorpedia.com/companies/us/fred-meyer
-https://encycolorpedia.com/ed1c24
-
-#d8262c \
-Fred-Meyer-01.eps (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- looks more muted, doesn't match the other icons included within the zip.
-
-#eb1c25 \
-Fred-Meyer-01.jpg (https://www.brandeps.com/logo-download/F/Fred-Meyer-01.zip) -- looks closer to fm.com svg colors.
