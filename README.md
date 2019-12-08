@@ -34,11 +34,27 @@ Zooming in on it a bit more we can see that there is indeed a 1-pixel grey borde
 
 ![grey_pixel_border](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/grey_pixel_border.png)
 
-So now I knew that this 1-pixel grey line was somehow responsible for the backgrounding animation issue. I was still confused on how but once I slowed down the animation within the iOS simulator I started to see why. During the animation iOS seems to grap the whole bottom row of pixels of an app icon and stretch it down to make it feel a bit more immersive when launching or closing an app. Look at the blue Kroger icon screenshot above and you can see the stretching effect on the right leg of the "K". This feels like more of an iOS bug to me though, it's an animation hack but it works fine on 99% of the icons. Most modern app icons don't have content that touches the edge of the icon. The majority of icons consist of small logos or glyphs centered on a mostly solid color background. You wouldn't really ever notice this animation bug if you didn't accidentally have a row of dark pixels on your mostly white icon. You can even see the behavior on Apple's Maps icon here.
+So now I knew that this 1-pixel grey line was somehow responsible for the backgrounding animation issue. I was still confused on how but once I slowed down the animation within the iOS simulator I started to see why. During the animation iOS seems to grap the whole bottom row of pixels of an app icon and stretch it down to make it feel a bit more immersive when launching or closing an app. Look at the blue Kroger icon screenshot above and you can see the stretching effect on the right leg of the "K". This feels like more of an iOS bug to me though, it's an animation hack but it works fine on 99% of the icons. Most modern app icons don't have content that touches the edge of the icon. The majority of icons consist of small logos or glyphs centered on a mostly solid color background. You wouldn't really ever notice this animation bug if you didn't accidentally have a row of dark pixels on your mostly white icon. You can even see the behavior mid-animation on the Apple Maps icon.
 
 ![apple_maps](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/apple_maps.png)
 
 I went over all of the individual sizes for the icon assets and saw that the grey border wasn't on every single size but it was on 75% of them. We could have just gone in with an image editor and changed the grey pixels to white but by this time I had seen enough of the icon to spot a few other things I could improve. Fixing all of them would be pretty impossible to pull of by just using an image editor. I decided that if I wanted it done correctly I would have to basically re-create the icon from scratch.
+
+## Tweaking The Brand Refresh
+
+Before we dive in and start making the new icon lets go over some of the other fixes that I want to include in it. Kroger recently did a [brand refresh](https://www.thekrogerco.com/about-kroger/our-brand/) which included a new updated Kroger logo and marketing campaign. I really like the look of the new logo and the way they applied it to the main Kroger app icon. Aside from the animation banding issue mentioned earlier I think it's an amazing icon. It's simple but also bold. It uses just the first letter of the logo and it's positioned off center on the bottom-left to showcase the more expressive loop in the upper-right. Some of the edges of the character are slightly clipped off but it's very minor.
+
+![kroger_icon](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/kroger_icon.png)
+
+I was a little surprised to see some branding experts [mostly-negative opinions](https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_kroger_by_ddb.php) on the brand refresh but I think the implementation into the icon is perfect. The other 15 or so banner stores (Fred Meyer, Ralphs, Fry's, etc.) didn't quite get the same attention for the refresh. None of the banner logos were updated but they still decided to bring over the app icon refresh for all their various apps. I don't quite agree with this choice but I can understand the idea behind it. A lot of the other logos use very odd outdated wordmarks so just showing giant versions of the first character for all those apps feels very lazy.
+
+![banner_icons](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/banner_icons.png)
+
+Luckily the Fred Meyer logo is much more modern looking than the other banner logos. Here's what it used to look like before the brand refresh and how it looks like now.
+
+![fred_meyer_pre_refresh](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_meyer_pre_refresh.png)
+![fred_meyer_icon](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_meyer_icon.png)
+
 
 
 
@@ -56,10 +72,7 @@ one thing that they did seem to bring over is the app icon design theme of using
 
 one big assumption that I'm making is that I'm pretty sure the current red color used in the logo is wrong and doesn't match the brand guidelines. I could be wrong on this but I can't find any overwhelming evidence that disproves my theory. I'm mostly relying on how the logo is displayed on the fred meyer website and also from the svg on fredmeyer.com which has the exact rgb hex code within it. The brand colors may have been recently refreshed but if so, they decided to go with a less vibrant color and land on a de-saturated duller red.
 
-https://www.thekrogerco.com/about-kroger/our-brand/
-https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_kroger_by_ddb.php
 
-I would love to sit down and chat with all of the designers who worked on the new app icons and understand what direction they wanted to take and what their process is like. Hopefully I could share some tips that helped me but also hear the problems they are trying to solve.
 
 Wanted to investigate using Display P3 versions of the icon but through a lot of trial and error I'm pretty sure the difference between the versions would be negligible. I was getting confused switching between both sRGB and Display P3 color spaces/profiles. I was keeping the same 8-bit red color hex code (#ED1C24) for both the sRGB and Display P3 image export but just assigning them their respective color profiles. This was producing a correct sRGB image but by just assigning the Display P3 color profile to the Display P3 image it was making the red color way more saturated and vibrant than it really should be. At first I thought this is just what Display P3 images should look like as they're supposed to be able to display more colors that we're not used to seeing in the sRGB world. The problem is that the red sRGB color value is already within the Display P3 gamut so we shouldn't really be seeing any new crazy vibrant wider colors.
 
