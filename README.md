@@ -83,7 +83,7 @@ I read a lot of articles and blog posts about working with different color space
 
 ## Pixel Fitted
 
-We pretty much have all we need now to start to re-create the icon. We were able to get a copy of the vector logo so we can copy the "F" from it and have it be as sharp as possible in all resolutions. We have the red brand color that we're going to fill the "F" with. That's about all we need to get started but there is one more improvement that I'd like to add to all the icons. It's called [pixel-fitting](https://dcurt.is/pixel-fitting). If we zoom into one of the current app icons we can see the effects of not pixel-fitting. Take a look at the horizontal edges within the "F" path. Notice how they're blurry and have a line of more pink-ish pixels where it transitions from red to white.
+We pretty much have all we need now to start to re-create the icon. We were able to get a copy of the vector logo so we can copy the "F" from it and have it be as sharp as possible in all resolutions. We have the red brand color that we're going to fill the "F" with. That's about all we need to get started but there is one more improvement that I'd like to add to all the icons. It's called [pixel-fitting](https://dcurt.is/pixel-fitting) (shout out to Dustin Curtis for the amazing blog post!). If we zoom into one of the current app icons we can see the effects of not pixel-fitting. Take a look at the horizontal edges within the "F" path. Notice how they're blurry and have a line of more pink-ish pixels where it transitions from red to white.
 
 ![blurry_pixels](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/blurry_pixels.png)
 
