@@ -123,41 +123,47 @@ Fixed (13) icons total size: **19,977 bytes**
 
 **That's a 58.6% reduction in size!** The original icons weren't that massive to begin with but every little savings adds up. Imagine if we did this with every .png asset that's include in the app bundle. We could save people way more bandwidth by optimizing all the images. This would speed up so many things and reduce the memory footprint of the app.
 
+## Future Improvements
+
+The fixed icons look pretty great but I thought of some potential improvements. Instead of the icon being just a giant "F" it might be more recognizable to people if we have both initials "FM" in the icon. I would lose some of the boldness of the recent icon refresh but I think it could work. The website favicon is actually already doing this. Here's a quick test concept that I threw together inspired by the favicon. We can even invert the colors to make it stand out a bit more.
+
+
+
 ## Outro
 
-I had a super fun time on this project learning new concepts and tools. I learned way more about digital color spaces, color theory and wide gamut color. 
+I had a super fun time on this project. I learned way more about digital color spaces, color theory and wide gamut color. I also had a chance to use some new tools and improve my skills on some others. After completing this project I feel like an even better QE, a better designer and a better writer. Great success!
 
+![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
 
+These are all of the different tools that I used during the project.
+* [Sketch](https://www.sketch.com/)
+* [ImageMagick](https://imagemagick.org/)
+* [identify](https://imagemagick.org/script/identify.php)
+* [Pixelmator](https://www.pixelmator.com/mac/)
+* [Pixelmator Pro](https://www.pixelmator.com/pro/)
+* [Preview](https://support.apple.com/guide/preview/welcome/mac)
+* [ColorSync Utility](https://support.apple.com/guide/colorsync-utility/welcome/mac)
+* [xScope](https://xscopeapp.com/)
+* [Xcode](https://developer.apple.com/xcode/)
+* [iOS Simulator](https://developer.apple.com/xcode/)
+* [Pngcrush](https://pmt.sourceforge.io/pngcrush/)
+* [OptiPNG](http://optipng.sourceforge.net/)
+* [Kaleidoscope](https://www.kaleidoscopeapp.com/)
+* [Asset Catalog Tinkerer](https://github.com/insidegui/AssetCatalogTinkerer)
+* [acextract](https://github.com/bartoszj/acextract)
+* [Apple Configurator 2](https://apps.apple.com/us/app/apple-configurator-2/id1037126344)
+* [iTerm2](https://iterm2.com/)
+* [Visual Studio Code](https://code.visualstudio.com/)
+* [Tower](https://www.git-tower.com/mac)
+* [Firefox](https://www.mozilla.org/en-US/firefox/)
+* [Git](https://git-scm.com/)
+* [Github](https://github.com/)
+* [Markdown](https://daringfireball.net/projects/markdown/)
+* [LICEcap](https://www.cockos.com/licecap/)
+* [Quicktime Player](https://support.apple.com/quicktime)
+* [homebrew](https://brew.sh/)
 
-Here are all the different tools that I used during the project.
-* Sketch
-* imagemagick
-* identify
-* pixelmator
-* pixelmator pro
-* preview
-* colorsync utility
-* xscope
-* xcode
-* ios simulator
-* pngcrush
-* kaleidoscope
-* asset catalog tinkerer
-* acextract
-* apple configurator 2
-* iterm2
-* visual studio code
-* tower
-* firefox
-* git
-* github
-* markdown
-* optipng
-* licecap
-* quicktime player
-* homebrew
-
-Thank you so much for reading! Please feel free to let me know if you have any suggestions or feedback. I would love to hear it!
+Thank you so much for reading! Please feel free to let me know if you have any feedback or suggestions. I would love to hear it!
 
 
 --------------------------------------------------------------------------
@@ -167,6 +173,3 @@ new refreshed app icon concept inspired by the favicon. most banner stores just 
 https://www.youtube.com/watch?v=iX14q43Gyyo
 https://www.youtube.com/watch?v=WYzCCCnUyUA
 
-I feel like a better qe, a better designer and a better writer than when I started this project.
-
-![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
