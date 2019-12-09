@@ -125,13 +125,24 @@ Fixed (13) icons total size: **19,977 bytes**
 
 ## Future Improvements
 
-The fixed icons look pretty great but I thought of some potential improvements. Instead of the icon being just a giant "F" it might be more recognizable to people if we have both initials "FM" in the icon. I would lose some of the boldness of the recent icon refresh but I think it could work. The website favicon is actually already doing this. Here's a quick test concept that I threw together inspired by the favicon. We can even invert the colors to make it stand out a bit more.
+The fixed icons look pretty great but I thought of some potential improvements. Instead of the icon being just a giant "F" it might be more recognizable to people if we have both initials "FM" in the icon. I would lose some of the boldness of the recent icon refresh but I think it could work. The website favicon is actually already doing this. Here's a quick test concept that I threw together inspired by the favicon. We can even invert the colors to make it a bit bolder.
 
-
+![icon_concepts](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/icon_concepts.gif)
 
 ## Outro
 
-I had a super fun time on this project. I learned way more about digital color spaces, color theory and wide gamut color. I also had a chance to use some new tools and improve my skills on some others. After completing this project I feel like an even better QE, a better designer and a better writer. Great success!
+So what was our final bug/improvements count? Did we get close to 75? It's a little hard to calculate since I both found and fixed a bunch of them but here's a rough total.
+
+Fix grey banding animation/grey border (I think there were 9 total sizes that had the border): 9
+Display the whole "F" within the icon: 13
+Update "F" to use the correct brand color: 13
+Pixel-fit vector paths: 13
+Optimize PNGs: 13
+**Total bug/improvements: 61**
+
+I think that's a pretty respectable total to find before we even launched the app. The 15 other banner store apps also have the same grey banding animation/border bug so maybe a better total would be something like: ~300+? I'm good with 61 though.
+
+I had a super fun time on this project. I learned way more about digital color spaces, color theory and wide gamut color. I also had a chance to use some new tools and improve my skills on some others. After completing this project I feel like a better QE, designer and writer. Great success!
 
 ![good_job](https://media.giphy.com/media/8xgqLTTgWqHWU/giphy.gif)
 
@@ -164,12 +175,3 @@ These are all of the different tools that I used during the project.
 * [homebrew](https://brew.sh/)
 
 Thank you so much for reading! Please feel free to let me know if you have any feedback or suggestions. I would love to hear it!
-
-
---------------------------------------------------------------------------
-so what is the total number of bugs/improvements? x15 for all of the other kroger banner store apps that have similar issues? its debateable what is a single bug or improvement as theres multiple steps involved in some of them.
-
-new refreshed app icon concept inspired by the favicon. most banner stores just have one word names (Ralphs, frys, smiths) but Fred Meyer is a rarer one with two words. the recent app icon refresh works fine for most of those one word stores but not so much for Fred Meyer. It's sometimes referred to locally as "Freddy's" since that used to be there tag line in advertisements.
-https://www.youtube.com/watch?v=iX14q43Gyyo
-https://www.youtube.com/watch?v=WYzCCCnUyUA
-
