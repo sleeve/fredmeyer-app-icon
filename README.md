@@ -133,11 +133,11 @@ The fixed icons look pretty great but I thought of some potential improvements. 
 
 So what was our final bug/improvements count? Did we get close to 75? It's a little hard to calculate since I both found and fixed a bunch of them but here's a rough total.
 
-Fix grey banding animation/grey border (I think there were 9 total sizes that had the border): 9
-Display the whole "F" within the icon: 13
-Update "F" to use the correct brand color: 13
-Pixel-fit vector paths: 13
-Optimize PNGs: 13
+Fix grey banding animation/grey border (I think there were 9 total sizes that had the border): 9 \
+Display the whole "F" within the icon: 13 \
+Update "F" to use the correct brand color: 13 \
+Pixel-fit vector paths: 13 \
+Optimize PNGs: 13 \
 **Total bug/improvements: 61**
 
 I think that's a pretty respectable total to find before we even launched the app. The 15 other banner store apps also have the same grey banding animation/border bug so maybe a better total would be something like: ~300+? I'm good with 61 though.
