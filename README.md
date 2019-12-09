@@ -22,7 +22,7 @@ So how do we investigate this further? We need a way to access the actual icon i
 
 ![asset_catalog_example](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/asset_catalog_example.png)
 
-I then gathered all of the app icon assets and added them to an iOS test app that I created. I was able to reproduce the issue with my test app so now I knew the issue was with the icon assets and had nothing to do with the apps.
+Then I gathered all of the app icon assets and added them to an iOS test app that I created. I was able to reproduce the issue with my test app so now I knew the issue was with the icon assets and had nothing to do with the apps.
 
 ![fred_test](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/fred_test.gif)
 
@@ -34,7 +34,7 @@ Zooming in on it a bit more we can see that there is indeed a 1-pixel grey borde
 
 ![grey_pixel_border](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/grey_pixel_border.png)
 
-So now I knew that this 1-pixel grey line was somehow responsible for the backgrounding animation issue. I was still confused on how but once I slowed down the animation within the iOS simulator I started to see why. During the animation iOS seems to grap the whole bottom row of pixels of an app icon and stretch it down to make it feel a bit more immersive when launching or closing an app. Look at the blue Kroger icon screenshot above and you can see the stretching effect on the right leg of the "K". This feels like more of an iOS bug to me though, it's an animation hack but it works fine on 99% of the icons. Most modern app icons don't have content that touches the edge of the icon. The majority of icons consist of small logos or glyphs centered on a mostly solid color background. You wouldn't really ever notice this animation bug if you didn't accidentally have a row of dark pixels on your mostly white icon. You can even see the behavior mid-animation on the Apple Maps icon.
+So now I knew that this 1-pixel grey line was somehow responsible for the backgrounding animation issue. I was still confused on how but once I slowed down the animation within the iOS simulator I started to see why. During the animation iOS seems to grab the whole bottom row of pixels of an app icon and stretch it down to make it feel a bit more immersive when launching or closing an app. Look at the blue Kroger icon screenshot above and you can see the stretching effect on the right leg of the "K". This feels like more of an iOS bug to me though, it's an animation hack but it works fine on 99% of the icons. Most modern app icons don't have content that touches the edge of the icon. The majority of icons consist of small logos or glyphs centered on a mostly solid color background. You wouldn't really ever notice this animation bug if you didn't accidentally have a row of dark pixels on your mostly white icon. You can even see the behavior mid-animation on the Apple Maps icon.
 
 ![apple_maps](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/apple_maps.png)
 
@@ -46,7 +46,7 @@ Before we dive in and start making the new icon lets go over some of the other f
 
 ![kroger_icon](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/kroger_icon.png)
 
-I was a little surprised to see some branding experts [mostly-negative opinions](https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_kroger_by_ddb.php) on the brand refresh but I think the implementation into the icon is perfect. The other 15 or so banner stores (Fred Meyer, Ralphs, Fry's, etc.) didn't quite get the same amount of love and attention for the refresh. None of the banner store logos were updated but they still decided to bring over the app icon refresh for all their various apps. I don't quite agree with this choice but I can understand the idea behind it. A lot of the other logos use very odd outdated wordmarks so just showing giant slightly-clipped versions of the first character for all those apps feels very lazy. My sympathies to the designers though, I can totally imagine the time pressure they must have been under to crank out 15+ new perfect bold app icons at once. Not easy an easy job.
+I was a little surprised to see some branding experts [mostly-negative opinions](https://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_kroger_by_ddb.php) on the brand refresh but I think the implementation into the icon is perfect. The other 15 or so banner stores (Fred Meyer, Ralphs, Fry's, etc.) didn't quite get the same amount of love and attention for the refresh. None of the banner store logos were updated but they still decided to bring over the app icon refresh for all their various apps. I don't quite agree with this choice but I can understand the idea behind it. A lot of the other logos use very odd outdated wordmarks so just showing giant slightly-clipped versions of the first character for all those apps feels very lazy. My sympathies to the designers though, I can imagine the time pressure they must have been under to crank out 15+ new perfect bold app icons at once. Not easy an easy job.
 
 ![banner_icons](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/banner_icons.png)
 
@@ -127,7 +127,7 @@ Fixed (13) icons total size: **19,977 bytes**
 
 The fixed icons look pretty great but I thought of some potential improvements. Instead of the icon being just a giant "F" it might be more recognizable to people if we have both initials "FM" in the icon. I would lose some of the boldness of the recent icon refresh but I think it could work. The website favicon is actually already doing this. Here's a quick test concept that I threw together inspired by the favicon. We can even invert the colors to make it a bit bolder.
 
-![icon_concepts](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/icon_concepts.gif)
+![icon_concepts](https://github.com/sleeve/fredmeyer-app-icon/blob/master/screenshots/icon_concepts.png)
 
 ## Outro
 
